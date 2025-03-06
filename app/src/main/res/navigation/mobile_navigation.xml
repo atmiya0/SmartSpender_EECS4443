@@ -9,21 +9,22 @@
         android:id="@+id/navigation_summary"
         android:name="com.example.smartspender.ui.summary.SummaryFragment"
         android:label="@string/title_summary"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_summary" />
 
-    <fragment
-        android:id="@+id/navigation_budgets"
-        android:name="com.example.smartspender.ui.budgets.BudgetsFragment"
-        android:label="@string/title_budgets" />
     <fragment
         android:id="@+id/navigation_income"
         android:name="com.example.smartspender.ui.income.IncomeFragment"
         android:label="@string/title_income"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_expenses" />
 
     <fragment
         android:id="@+id/navigation_expenses"
         android:name="com.example.smartspender.ui.expenses.ExpensesFragment"
         android:label="@string/title_expenses"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_income" />
+
+    <fragment
+        android:id="@+id/navigation_budgets"
+        android:name="com.example.smartspender.ui.budgets.BudgetsFragment"
+        android:label="@string/title_budgets" />
 </navigation>
