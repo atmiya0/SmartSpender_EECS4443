@@ -1,4 +1,4 @@
-package com.example.smartspender.ui.home;
+package com.example.smartspender.ui.income;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,14 +12,14 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.smartspender.databinding.FragmentHomeBinding;
 
-public class HomeFragment extends Fragment {
+public class IncomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        HomeViewModel homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
+        IncomeViewModel homeViewModel =
+                new ViewModelProvider(this).get(IncomeViewModel.class);
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
