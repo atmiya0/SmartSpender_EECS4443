@@ -1,16 +1,16 @@
-package com.example.smartspender.ui.home;
+package com.example.smartspender.ui.budgets;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class HomeViewModel extends ViewModel {
+public class BudgetsViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
 
-    public HomeViewModel() {
+    public BudgetsViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
+        mText.setValue("This is Budgets fragment");
     }
 
     public LiveData<String> getText() {
