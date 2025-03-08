@@ -26,5 +26,6 @@
     <fragment
         android:id="@+id/navigation_budgets"
         android:name="com.example.smartspender.ui.budgets.BudgetsFragment"
-        android:label="@string/title_budgets" />
+        android:label="@string/title_budgets"
+        tools:layout="@layout/fragment_budgets"/>
 </navigation>
