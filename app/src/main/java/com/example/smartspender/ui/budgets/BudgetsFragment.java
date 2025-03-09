@@ -14,16 +14,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import java.util.ArrayList;
 import java.util.List;
+import com.example.smartspender.adapters.TransactionAdapter;
+import com.example.smartspender.model.Transaction;
 
 import com.example.smartspender.databinding.FragmentBudgetsBinding;
-import com.example.smartspender.expenseItem;
 
 public class BudgetsFragment extends Fragment {
 
     private FragmentBudgetsBinding binding;
     private RecyclerView recyclerView;
-    private RecyclerViewAdapter recyclerViewAdapter;
-    private List<expenseItem> itemList;
+    private TransactionAdapter transactionAdapter;
+    private List<Transaction> transactionList;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -40,60 +41,15 @@ public class BudgetsFragment extends Fragment {
 
         // Set LayoutManager
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        itemList = new ArrayList<>();
-        itemList.add(new expenseItem("Category 1", 200, "Today"));
-        itemList.add(new expenseItem("Category 2", 0, "Yestarday"));
+        transactionList = new ArrayList<>();
+        transactionList.add(new Transaction("Category 1", "Today", "200"));
+        transactionList.add(new Transaction("Category 2", "Yestarday", "0"));
         //Can add more if needed
 
         // Initialize Adapter and set it to RecyclerView
-        recyclerViewAdapter = new RecyclerViewAdapter(itemList);
-        recyclerView.setAdapter(recyclerViewAdapter);
+        transactionAdapter = new TransactionAdapter(transactionList);
+        recyclerView.setAdapter(transactionAdapter);
         return root;
-    }
-
-    public static class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
-
-        private List<expenseItem> itemList;
-
-        // Constructor
-        public RecyclerViewAdapter(List<expenseItem> itemList) {
-            this.itemList = itemList;
-        }
-
-        // Create new views (invoked by the layout manager)
-        @Override
-        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View itemView = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.item_layout, parent, false);  // Inflate your item layout
-            return new ViewHolder(itemView);
-        }
-
-        // Replace the contents of a view (invoked by the layout manager)
-        @Override
-        public void onBindViewHolder(ViewHolder holder, int position) {
-            expenseItem currentItem = itemList.get(position);
-            holder.itemView1.setText(currentItem.getCategory());  // Set your data here
-            holder.itemView2.setText(currentItem.getDate());
-            holder.itemView3.setText(String.valueOf(currentItem.getAmount()));
-        }
-
-        // Return the size of the dataset (invoked by the layout manager)
-        @Override
-        public int getItemCount() {
-            return itemList.size();
-        }
-
-        // Provide a reference to each item in the view
-        public static class ViewHolder extends RecyclerView.ViewHolder {
-            public TextView itemView1, itemView2, itemView3;  // Declare your views
-
-            public ViewHolder(View itemView) {
-                super(itemView);
-                itemView1 = itemView.findViewById(R.id.itemView1);  // Bind views to IDs
-                itemView2 = itemView.findViewById(R.id.itemView2);
-                itemView3 = itemView.findViewById(R.id.itemView3);
-            }
-        }
     }
 
     @Override

@@ -109,7 +109,7 @@
                     android:layout_width="332dp"
                     android:layout_height="85dp"
                     android:layout_marginTop="24dp"
-                    android:background="@color/gray200"
+                    android:background="@drawable/text_background"
                     android:orientation="vertical"
                     android:padding="10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
