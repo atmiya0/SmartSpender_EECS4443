@@ -4,7 +4,9 @@
     <string name="title_income">INCOME</string>
     <string name="title_expenses">EXPENSES</string>
     <string name="title_budgets">BUDGETS</string>
-    <string name="summary_tit">You have two active budgets</string>
-    <string name="budget_create">Create Budget</string>
-    <string name="budget_section">Budgets</string>
+    <string name="income_title">Your monthly income is</string>
+    <string name="income_source_text">Income source</string>
+    <string name="add_income">Add Income</string>
+    <string name="pick_date">Date</string>
+    <string name="income_history">Income History</string>
 </resources>

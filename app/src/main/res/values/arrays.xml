@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="income_source_options">
+        <item>Income source</item>
+        <item>Salary</item>
+        <item>Bonus</item>
+        <item>Commission</item>
+        <item>Other</item>
+    </string-array>
+</resources>
