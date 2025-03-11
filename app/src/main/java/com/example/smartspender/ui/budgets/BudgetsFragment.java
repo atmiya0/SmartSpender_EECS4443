@@ -16,6 +16,10 @@ import java.util.ArrayList;
 import java.util.List;
 import com.example.smartspender.adapters.TransactionAdapter;
 import com.example.smartspender.model.Transaction;
+import android.app.DatePickerDialog;
+import android.widget.EditText;
+import com.google.android.material.textfield.TextInputLayout;
+import java.util.Calendar;
 
 import com.example.smartspender.databinding.FragmentBudgetsBinding;
 
@@ -25,6 +29,8 @@ public class BudgetsFragment extends Fragment {
     private RecyclerView recyclerView;
     private TransactionAdapter transactionAdapter;
     private List<Transaction> transactionList;
+    EditText etDate;
+    TextInputLayout dateInput;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -49,7 +55,26 @@ public class BudgetsFragment extends Fragment {
         // Initialize Adapter and set it to RecyclerView
         transactionAdapter = new TransactionAdapter(transactionList);
         recyclerView.setAdapter(transactionAdapter);
+
+        etDate = binding.etDate;
+        dateInput = binding.dateInput;
+        etDate.setOnClickListener(v -> showDatePicker());
+        dateInput.setEndIconOnClickListener(v -> showDatePicker());
+
         return root;
+    }
+
+    private void showDatePicker(){
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog datePicker = new DatePickerDialog(requireContext(), (view1, selectedYear, selectedMonth, selectedDay) -> {
+            etDate.setText(selectedDay + "/" + (selectedMonth + 1) + "/" + selectedYear);
+        }, year, month, day);
+
+        datePicker.show();
     }
 
     @Override
