@@ -50,9 +50,13 @@ public class MainActivity extends AppCompatActivity {
 //            Log.d("Contact Info: ", "Name- " + data.get(i).name + " Phone Number- " +
 //                    data.get(i).phone_no);
 
+        dbHelper.addBudget("Atmiya", "Finance");
+
+
         ModalContact modal = new ModalContact();
-        modal.id = 1;
-        modal.phone_no = "4379883114";
+        modal.budgets_key_id = 1;
+        modal.budgets_name = "Justin";
+        modal.budgets_category = "Personal Budget";
         dbHelper.updateContact(modal);
 
     }
