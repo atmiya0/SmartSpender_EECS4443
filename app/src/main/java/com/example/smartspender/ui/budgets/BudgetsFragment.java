@@ -43,7 +43,7 @@ public class BudgetsFragment extends Fragment {
         final TextView textView = binding.summaryTit;
         budgetsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         // Initialize RecyclerView
-        recyclerView = root.findViewById(R.id.budget_recyclerView);
+        recyclerView = root.findViewById(R.id.expenses_recyclerView);
 
         // Set LayoutManager
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
