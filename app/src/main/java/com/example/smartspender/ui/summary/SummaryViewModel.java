@@ -10,7 +10,7 @@ public class SummaryViewModel extends ViewModel {
 
     public SummaryViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is summary fragment");
+        mText.setValue("/3000");
     }
 
     public LiveData<String> getText() {
