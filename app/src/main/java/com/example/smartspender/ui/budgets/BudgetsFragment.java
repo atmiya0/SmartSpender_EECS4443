@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,6 +18,9 @@ import java.util.ArrayList;
 import java.util.List;
 import com.example.smartspender.adapters.TransactionAdapter;
 import com.example.smartspender.model.Transaction;
+import android.app.DatePickerDialog;
+import android.widget.EditText;
+import java.util.Calendar;
 
 import com.example.smartspender.databinding.FragmentBudgetsBinding;
 
@@ -25,6 +30,7 @@ public class BudgetsFragment extends Fragment {
     private RecyclerView recyclerView;
     private TransactionAdapter transactionAdapter;
     private List<Transaction> transactionList;
+    EditText etDate;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -49,7 +55,32 @@ public class BudgetsFragment extends Fragment {
         // Initialize Adapter and set it to RecyclerView
         transactionAdapter = new TransactionAdapter(transactionList);
         recyclerView.setAdapter(transactionAdapter);
+
+        //Initializes the date picker
+        etDate = binding.etDate;
+        etDate.setOnClickListener(v -> showDatePicker());
+
+        // Initialize the AutoCompleteTextView
+        AutoCompleteTextView categoryDropdown = root.findViewById(R.id.category);
+        String[] categories = {"Finance", "Food", "Transport", "Shopping", "Rent", "Utilities", "Entertainment"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_dropdown_item_1line, categories);
+        categoryDropdown.setAdapter(adapter);
+        categoryDropdown.setOnClickListener(v -> categoryDropdown.showDropDown());
+
         return root;
+    }
+
+    private void showDatePicker(){
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog datePicker = new DatePickerDialog(requireContext(), (view1, selectedYear, selectedMonth, selectedDay) -> {
+            etDate.setText(selectedDay + "/" + (selectedMonth + 1) + "/" + selectedYear);
+        }, year, month, day);
+
+        datePicker.show();
     }
 
     @Override

@@ -3,18 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     tools:context=".ui.summary.SummaryFragment">
 
 
     <!-- Screen Title -->
 
     <ScrollView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -25,7 +25,8 @@
                 android:id="@+id/topContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:ignore="MissingConstraints">
+                tools:ignore="MissingConstraints"
+                android:padding="15dp">
 
                 <ImageView
                     android:id="@+id/icon_piggy_bank"
@@ -50,9 +51,9 @@
 
                 <LinearLayout
                     android:id="@+id/remainingBudget"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="15dp"
                     android:orientation="vertical"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -106,8 +107,8 @@
 
                 <LinearLayout
                     android:id="@+id/info_1"
-                    android:layout_width="332dp"
-                    android:layout_height="85dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
                     android:background="@drawable/text_background"
                     android:orientation="vertical"
@@ -142,10 +143,11 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/bottomContainer"
                 android:layout_width="match_parent"
-                android:layout_height="441dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 app:layout_constraintTop_toBottomOf="@+id/middleContainer"
-                tools:layout_editor_absoluteX="2dp">
+                tools:layout_editor_absoluteX="2dp"
+                android:padding="15dp">
 
                 <TextView
                     android:id="@+id/transactionHeading"
@@ -162,10 +164,10 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycler_transactions"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_margin="16dp"
+                    android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/transactionHeading"
                     tools:ignore="UnknownId" />
 
