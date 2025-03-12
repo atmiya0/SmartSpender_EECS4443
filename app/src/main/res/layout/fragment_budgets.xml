@@ -32,7 +32,7 @@
         app:layout_constraintTop_toBottomOf="@id/iconImageView" />
 
     <EditText
-        android:id="@+id/input1"
+        android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
@@ -44,21 +44,23 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/summary_tit" />
 
-    <EditText
-        android:id="@+id/input2"
+    <AutoCompleteTextView
+        android:id="@+id/category"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:background="@drawable/text_background"
+        android:drawableEnd="@drawable/dropdown_icon"
         android:fontFamily="@font/lexend_deca"
         android:hint="Category"
-        android:inputType="text"
+        android:inputType="none"
         android:padding="15dp"
+        android:focusable="false"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/input1" />
+        app:layout_constraintTop_toBottomOf="@id/name" />
 
     <EditText
-        android:id="@+id/input3"
+        android:id="@+id/limit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
@@ -68,33 +70,25 @@
         android:inputType="text"
         android:padding="15dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/input2" />
+        app:layout_constraintTop_toBottomOf="@id/category" />
 
-    <com.google.android.material.textfield.TextInputLayout
+    <EditText
+        android:id="@+id/etDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Date"
-        android:layout_margin="15dp"
         android:background="@drawable/text_background"
-        app:boxBackgroundMode="none"
-        app:endIconMode="custom"
-        android:id="@+id/dateInput"
-        app:endIconDrawable="@drawable/calander_icon"
-        app:layout_constraintTop_toBottomOf="@id/input3"
-        app:layout_constraintLeft_toLeftOf="parent">
+        android:padding="15dp"
+        android:layout_margin="15dp"
+        android:fontFamily="@font/lexend_deca"
+        android:inputType="none"
+        android:clickable="true"
+        android:enabled="true"
+        android:focusable="false"
+        android:drawableEnd="@drawable/calender_icon"
+        app:layout_constraintTop_toBottomOf="@id/limit"
+        app:layout_constraintLeft_toLeftOf="parent"/>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:enabled="true"
-            android:focusable="false"
-            android:padding="15dp"
-            android:fontFamily="@font/lexend_deca"
-            android:inputType="none"
-            android:textSize="18sp" />
-    </com.google.android.material.textfield.TextInputLayout>
 
 
     <Button
@@ -107,7 +101,7 @@
         android:padding="15dp"
         android:text="@string/budget_create"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/dateInput" />
+        app:layout_constraintTop_toBottomOf="@id/etDate" />
 
     <TextView
         android:id="@+id/section_tit"

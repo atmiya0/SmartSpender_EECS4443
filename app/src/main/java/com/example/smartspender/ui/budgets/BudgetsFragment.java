@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,7 +20,6 @@ import com.example.smartspender.adapters.TransactionAdapter;
 import com.example.smartspender.model.Transaction;
 import android.app.DatePickerDialog;
 import android.widget.EditText;
-import com.google.android.material.textfield.TextInputLayout;
 import java.util.Calendar;
 
 import com.example.smartspender.databinding.FragmentBudgetsBinding;
@@ -30,7 +31,6 @@ public class BudgetsFragment extends Fragment {
     private TransactionAdapter transactionAdapter;
     private List<Transaction> transactionList;
     EditText etDate;
-    TextInputLayout dateInput;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -56,10 +56,16 @@ public class BudgetsFragment extends Fragment {
         transactionAdapter = new TransactionAdapter(transactionList);
         recyclerView.setAdapter(transactionAdapter);
 
+        //Initializes the date picker
         etDate = binding.etDate;
-        dateInput = binding.dateInput;
         etDate.setOnClickListener(v -> showDatePicker());
-        dateInput.setEndIconOnClickListener(v -> showDatePicker());
+
+        // Initialize the AutoCompleteTextView
+        AutoCompleteTextView categoryDropdown = root.findViewById(R.id.category);
+        String[] categories = {"Finance", "Food", "Transport", "Shopping", "Rent", "Utilities", "Entertainment"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_dropdown_item_1line, categories);
+        categoryDropdown.setAdapter(adapter);
+        categoryDropdown.setOnClickListener(v -> categoryDropdown.showDropDown());
 
         return root;
     }
