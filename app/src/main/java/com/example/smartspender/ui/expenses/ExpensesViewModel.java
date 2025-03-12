@@ -10,7 +10,7 @@ public class ExpensesViewModel extends ViewModel {
 
     public ExpensesViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is expenses fragment");
+        mText.setValue("This is the Expenses fragment");
     }
 
     public LiveData<String> getText() {
