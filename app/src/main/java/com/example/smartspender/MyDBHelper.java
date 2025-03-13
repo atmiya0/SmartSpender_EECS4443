@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class MyDBHelper extends SQLiteOpenHelper {
 
     // Table: BUDGETS (Justin)
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     private static final String DATABASE1_BUDGETS = "Budgets";
     private static final String TABLE_NAME1 = "Budgets";
     private static final String BUDGETS_KEY_ID = "id";
