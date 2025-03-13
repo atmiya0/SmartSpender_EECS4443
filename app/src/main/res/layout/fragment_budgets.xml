@@ -29,21 +29,19 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"/>
 
-    <TextView
-        android:id="@+id/summary_tit"
+    <TextView android:id="@+id/summary_tit"
         android:layout_width="300dp"
         android:layout_height="80dp"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
         android:layout_marginLeft="24dp"
+        android:layout_alignParentTop="true"
         android:layout_marginTop="15dp"
-        android:fontFamily="@font/lexend_deca_bold"
-        android:gravity="top"
-        android:lineSpacingExtra="0sp"
-        android:text="You have 2 active budgets"
+        android:text="@string/summary_tit"
         android:textAppearance="@style/summary_tit"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iconImageView" />
+        android:lineSpacingExtra="0sp"
+        android:gravity="top"
+        app:layout_constraintTop_toBottomOf="@id/iconImageView"
+        app:layout_constraintLeft_toLeftOf="parent"/>
 
     <EditText
         android:id="@+id/input1"
@@ -84,7 +82,7 @@
         android:layout_height="wrap_content"
         android:padding="15dp"
         android:layout_margin="15dp"
-        android:text="Create Budget"
+        android:text="@string/budget_create"
         android:background="@drawable/button_background"
         app:layout_constraintTop_toBottomOf="@id/input3"
         app:layout_constraintLeft_toLeftOf="parent"/>
@@ -96,7 +94,7 @@
         android:layout_marginLeft="24dp"
         android:layout_alignParentTop="true"
         android:layout_marginTop="15dp"
-        android:text="Budgets"
+        android:text="@string/budget_section"
         android:textAppearance="@style/section_tit"
         android:gravity="top"
         app:layout_constraintTop_toBottomOf="@id/budget_button"
