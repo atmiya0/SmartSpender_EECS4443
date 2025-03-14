@@ -31,9 +31,9 @@ public class SummaryFragment extends Fragment {
 
         // Dummy Transactions for Summary Screen (Top 5 Expenses)
         transactionList = new ArrayList<>();
-        transactionList.add(new Transaction("Apple Watch", "20 March", "$2000"));
-        transactionList.add(new Transaction("Netflix Subscription", "18 March", "$15"));
-        transactionList.add(new Transaction("Gym Membership", "15 March", "$50"));
+        transactionList.add(new Transaction("Apple Watch", "20 March", 2000));
+        transactionList.add(new Transaction("Netflix Subscription", "18 March", 15));
+        transactionList.add(new Transaction("Gym Membership", "15 March", 50));
 
         transactionAdapter = new TransactionAdapter(transactionList);
         recyclerView.setAdapter(transactionAdapter);
