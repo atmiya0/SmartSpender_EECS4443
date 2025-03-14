@@ -10,8 +10,7 @@ public class SummaryViewModel extends ViewModel {
 
     public SummaryViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("Monthly Summary\n" +
-                "for June 2025");
+        mText.setValue("/3000");
     }
 
     public LiveData<String> getText() {

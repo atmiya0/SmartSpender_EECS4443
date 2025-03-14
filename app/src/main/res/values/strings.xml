@@ -7,4 +7,7 @@
     <string name="summary_tit">You have two active budgets</string>
     <string name="budget_create">Create Budget</string>
     <string name="budget_section">Budgets</string>
+    
+    <string name="expense_add">Add Expense</string>
+    <string name="expense_section">Expenses</string>
 </resources>

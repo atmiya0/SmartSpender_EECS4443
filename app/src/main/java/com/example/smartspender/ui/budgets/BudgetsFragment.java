@@ -2,9 +2,13 @@ package com.example.smartspender.ui.budgets;
 
 import com.example.smartspender.R;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,16 +18,22 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import java.util.ArrayList;
 import java.util.List;
+import com.example.smartspender.adapters.TransactionAdapter;
+import com.example.smartspender.model.Transaction;
+import android.app.DatePickerDialog;
+import android.widget.EditText;
+import java.util.Calendar;
 
 import com.example.smartspender.databinding.FragmentBudgetsBinding;
-import com.example.smartspender.expenseItem;
 
 public class BudgetsFragment extends Fragment {
 
     private FragmentBudgetsBinding binding;
     private RecyclerView recyclerView;
-    private RecyclerViewAdapter recyclerViewAdapter;
-    private List<expenseItem> itemList;
+    private TransactionAdapter adapter;
+    private List<Transaction> transactionList;
+    EditText etDate, nameInput, limitInput;
+    private Button createBudgetButton;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -34,66 +44,72 @@ public class BudgetsFragment extends Fragment {
         View root = binding.getRoot();
 
         final TextView textView = binding.summaryTit;
-        budgetsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+//        budgetsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+
         // Initialize RecyclerView
-        recyclerView = root.findViewById(R.id.budget_recyclerView);
+        recyclerView = root.findViewById(R.id.budgets_recyclerView);
 
         // Set LayoutManager
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        itemList = new ArrayList<>();
-        itemList.add(new expenseItem("Category 1", 200, "Today"));
-        itemList.add(new expenseItem("Category 2", 0, "Yestarday"));
-        //Can add more if needed
+//        transactionList = new ArrayList<>();
+//        transactionList.add(new Transaction("Category 1", "Today", 200.0));
+//        transactionList.add(new Transaction("Category 2", "Yestarday", 0.0));
+//        //Can add more if needed
 
         // Initialize Adapter and set it to RecyclerView
-        recyclerViewAdapter = new RecyclerViewAdapter(itemList);
-        recyclerView.setAdapter(recyclerViewAdapter);
+        adapter = new TransactionAdapter();
+        recyclerView.setAdapter(adapter);
+
+        //Initializes the date picker
+        etDate = binding.etDate;
+        etDate.setOnClickListener(v -> showDatePicker());
+
+        // Initialize the AutoCompleteTextView
+        AutoCompleteTextView categoryDropdown = root.findViewById(R.id.category);
+        String[] categories = {"Finance", "Food", "Transport", "Shopping", "Rent", "Utilities", "Entertainment"};
+        ArrayAdapter<String> Categoryadapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_dropdown_item_1line, categories);
+        categoryDropdown.setAdapter(Categoryadapter);
+        categoryDropdown.setOnClickListener(v -> categoryDropdown.showDropDown());
+
+        //Initializing other fields
+        nameInput = binding.name;
+        limitInput = binding.limit;
+        createBudgetButton = root.findViewById(R.id.budget_button);
+
+        //Accepting inputs through the button
+        createBudgetButton.setOnClickListener(v -> {
+            String name = nameInput.getText().toString();
+            String category = categoryDropdown.getText().toString();
+            Double limit = Double.parseDouble(limitInput.getText().toString());
+            String date = etDate.getText().toString();
+            // Debug output before saving
+            Log.d("CreateBudget", "Budget Name: " + name);
+            Log.d("CreateBudget", "Category: " + category);
+            Log.d("CreateBudget", "Budget Limit: " + limit);
+            Log.d("CreateBudget", "Date: " + date);
+
+            Transaction newBudget = new Transaction(name, category+" - "+date, limit);
+            budgetsViewModel.addBudget(newBudget);
+            Log.d("CreateBudget", "Button clicked!"); // Debug log
+        });
+        budgetsViewModel.getBudgets().observe(getViewLifecycleOwner(), budgets -> {
+            adapter.SetTransaction(budgets);
+            adapter.notifyDataSetChanged();
+        });
         return root;
     }
 
-    public static class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
+    private void showDatePicker(){
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        private List<expenseItem> itemList;
+        DatePickerDialog datePicker = new DatePickerDialog(requireContext(), (view1, selectedYear, selectedMonth, selectedDay) -> {
+            etDate.setText(selectedDay + "/" + (selectedMonth + 1) + "/" + selectedYear);
+        }, year, month, day);
 
-        // Constructor
-        public RecyclerViewAdapter(List<expenseItem> itemList) {
-            this.itemList = itemList;
-        }
-
-        // Create new views (invoked by the layout manager)
-        @Override
-        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View itemView = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.item_layout, parent, false);  // Inflate your item layout
-            return new ViewHolder(itemView);
-        }
-
-        // Replace the contents of a view (invoked by the layout manager)
-        @Override
-        public void onBindViewHolder(ViewHolder holder, int position) {
-            expenseItem currentItem = itemList.get(position);
-            holder.itemView1.setText(currentItem.getCategory());  // Set your data here
-            holder.itemView2.setText(currentItem.getDate());
-            holder.itemView3.setText(String.valueOf(currentItem.getAmount()));
-        }
-
-        // Return the size of the dataset (invoked by the layout manager)
-        @Override
-        public int getItemCount() {
-            return itemList.size();
-        }
-
-        // Provide a reference to each item in the view
-        public static class ViewHolder extends RecyclerView.ViewHolder {
-            public TextView itemView1, itemView2, itemView3;  // Declare your views
-
-            public ViewHolder(View itemView) {
-                super(itemView);
-                itemView1 = itemView.findViewById(R.id.itemView1);  // Bind views to IDs
-                itemView2 = itemView.findViewById(R.id.itemView2);
-                itemView3 = itemView.findViewById(R.id.itemView3);
-            }
-        }
+        datePicker.show();
     }
 
     @Override
