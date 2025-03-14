@@ -46,13 +46,13 @@ public class ExpensesFragment extends Fragment {
         // Set LayoutManager
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         transactionList = new ArrayList<>();
-        transactionList.add(new Transaction("Coffee", "Beverages - March 20", "$3"));
-        transactionList.add(new Transaction("Tea", "Beverages - March 19", "$2"));
+        transactionList.add(new Transaction("Coffee", "Beverages - March 20", 3));
+        transactionList.add(new Transaction("Tea", "Beverages - March 19", 2));
 
         // More items for testing scrollability of RecyclerView
-        transactionList.add(new Transaction("Shoes", "Fashion - March 18", "$80"));
-        transactionList.add(new Transaction("Shirt", "Fashion - March 18", "$40"));
-        transactionList.add(new Transaction("Pants", "Fashion - March 18", "$80"));
+        transactionList.add(new Transaction("Shoes", "Fashion - March 18", 80));
+        transactionList.add(new Transaction("Shirt", "Fashion - March 18", 40));
+        transactionList.add(new Transaction("Pants", "Fashion - March 18", 80));
 
         //Can add more if needed
 
