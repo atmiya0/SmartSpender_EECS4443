@@ -4,9 +4,11 @@ import com.example.smartspender.R;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -78,6 +80,17 @@ public class ExpensesFragment extends Fragment {
             );
             datePickerDialog.show();
         });
+
+        Button expenseButton = binding.expensesButton;
+        expenseButton.setOnClickListener(v -> {
+            String item = binding.input1.getText().toString();
+            String category = binding.input2.getText().toString();
+            String amount = binding.input3.getText().toString();
+
+            Log.d("ExpenseButton", "Item: " + item + ", Category: " + category + ", Amount: " + amount);
+        });
+
+
         return root;
     }
 

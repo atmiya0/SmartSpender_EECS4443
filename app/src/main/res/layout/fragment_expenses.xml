@@ -85,7 +85,7 @@
         app:layout_constraintTop_toBottomOf="@id/input2" />
 
     <Button
-        android:id="@+id/budget_button"
+        android:id="@+id/expenses_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
@@ -109,7 +109,7 @@
         android:text="@string/expense_section"
         android:textAppearance="@style/section_tit"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/budget_button" />
+        app:layout_constraintTop_toBottomOf="@id/expenses_button" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/expenses_recyclerView"
