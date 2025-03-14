@@ -1,5 +1,6 @@
 package com.example.smartspender.adapters;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,13 +12,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.smartspender.R;
 import com.example.smartspender.model.Transaction;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.TransactionViewHolder> {
 
-    private List<Transaction> transactionList;
+    private List<Transaction> transactionList = new ArrayList<>();
 
     public TransactionAdapter(List<Transaction> transactionList) {
+        this.transactionList = transactionList;
+    }
+    public TransactionAdapter() {
+        this.transactionList = transactionList;
+    }
+
+    public void SetTransaction(List<Transaction> transactionList) {
         this.transactionList = transactionList;
     }
 
@@ -33,7 +42,9 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         Transaction transaction = transactionList.get(position);
         holder.transactionName.setText(transaction.getName());
         holder.transactionDetails.setText(transaction.getDetails());
-        holder.transactionAmount.setText(transaction.getAmount());
+        holder.transactionAmount.setText("$"+transaction.getAmount());
+        Log.d("RecyclerView", "Binding Budget: " + transaction.getName());
+
     }
 
     @Override
