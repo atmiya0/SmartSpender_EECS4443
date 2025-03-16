@@ -11,7 +11,7 @@ import com.example.smartspender.model.Budget;
 public abstract class BudgetDatabase extends RoomDatabase{
     private static BudgetDatabase instance;
 
-    public abstract BudgetDao transactionDao();
+    public abstract BudgetDao budgetDao();
 
     public static synchronized BudgetDatabase getInstance(Context context) {
         if (instance == null) {

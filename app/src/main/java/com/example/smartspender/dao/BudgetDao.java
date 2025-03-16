@@ -18,6 +18,6 @@ public interface BudgetDao {
     void delete(Budget budget);
 
     @Query("SELECT * FROM budgets ORDER BY id DESC")
-    LiveData<List<Budget>> getAllTransactions();
+    LiveData<List<Budget>> getAllBudgets();
     
 }

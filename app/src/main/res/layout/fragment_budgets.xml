@@ -17,7 +17,7 @@
         app:layout_constraintLeft_toLeftOf="parent"/>
 
     <TextView
-        android:id="@+id/summary_tit"
+        android:id="@+id/summaryTitle"
         android:layout_width="300dp"
         android:layout_height="85dp"
         android:layout_alignParentLeft="true"
@@ -43,7 +43,7 @@
         android:inputType="text"
         android:padding="15dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/summary_tit" />
+        app:layout_constraintTop_toBottomOf="@id/summaryTitle" />
 
     <AutoCompleteTextView
         android:id="@+id/category"
@@ -90,7 +90,7 @@
         app:layout_constraintTop_toBottomOf="@id/limit"
         app:layout_constraintLeft_toLeftOf="parent"/>
 
-
+<!--CREATE BUDGET BUTTON-->
 
     <Button
         android:id="@+id/budget_button"
@@ -100,7 +100,7 @@
         android:background="@drawable/button_background"
         android:fontFamily="@font/lexend_deca"
         android:padding="15dp"
-        android:text="Creat budget"
+        android:text="Create budget"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etDate" />
 
@@ -120,15 +120,15 @@
         app:layout_constraintTop_toBottomOf="@id/budget_button" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/budgets_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:id="@+id/budgets_recyclerView"
-        app:layout_constraintTop_toBottomOf="@id/section_tit"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:clipToPadding="false"
         android:paddingStart="15dp"
         android:paddingEnd="15dp"
-        android:clipToPadding="false"
-        android:paddingBottom="80dp"/>
+        android:paddingBottom="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/section_tit" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

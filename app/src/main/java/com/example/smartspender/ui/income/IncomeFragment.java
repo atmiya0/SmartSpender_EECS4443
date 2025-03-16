@@ -91,7 +91,7 @@ public class IncomeFragment extends Fragment {
         });
 
         incomeViewModel.getIncomes().observe(getViewLifecycleOwner(), incomes -> {
-            adapter.SetTransaction(incomes);
+            adapter.SetBudget(incomes);
             adapter.notifyDataSetChanged();
         });
 

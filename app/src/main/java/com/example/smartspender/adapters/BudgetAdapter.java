@@ -15,7 +15,7 @@ import com.example.smartspender.model.Budget;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BudgetAdapter extends RecyclerView.Adapter<BudgetAdapter.TransactionViewHolder> {
+public class BudgetAdapter extends RecyclerView.Adapter<BudgetAdapter.BudgetViewHolder> {
 
     private List<Budget> budgetsList = new ArrayList<>();
 
@@ -26,24 +26,24 @@ public class BudgetAdapter extends RecyclerView.Adapter<BudgetAdapter.Transactio
         this.budgetsList = budgetsList;
     }
 
-    public void SetTransaction(List<Budget> budgetsList) {
+    public void SetBudget(List<Budget> budgetsList) {
         this.budgetsList = budgetsList;
     }
 
     @NonNull
     @Override
-    public TransactionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public BudgetViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
-        return new TransactionViewHolder(view);
+        return new BudgetViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TransactionViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull BudgetViewHolder holder, int position) {
         Budget budget = budgetsList.get(position);
-        holder.transactionName.setText(budget.getName());
-        holder.transactionDetails.setText(budget.getDetails());
-        holder.transactionAmount.setText("$" + String.format("%.2f", budget.getAmount()));
-        Log.d("RecyclerView", "Binding Budget: " + budget.getName());
+        holder.budget_name.setText(budget.getBudget_name());
+        holder.budget_category_and_date.setText(budget.getBudget_category_and_date());
+        holder.budget_limit.setText("$" + String.format("%.2f", budget.getBudget_limit()));
+        Log.d("RecyclerView", "Binding Budget: " + budget.getBudget_name());
     }
 
     @Override
@@ -51,15 +51,15 @@ public class BudgetAdapter extends RecyclerView.Adapter<BudgetAdapter.Transactio
         return budgetsList.size();
     }
 
-    static class TransactionViewHolder extends RecyclerView.ViewHolder {
-        TextView transactionName, transactionDetails, transactionAmount;
+    static class BudgetViewHolder extends RecyclerView.ViewHolder {
+        TextView budget_name, budget_category_and_date, budget_limit;
         CardView cardView;
 
-        public TransactionViewHolder(@NonNull View itemView) {
+        public BudgetViewHolder(@NonNull View itemView) {
             super(itemView);
-            transactionName = itemView.findViewById(R.id.text_transaction_name);
-            transactionDetails = itemView.findViewById(R.id.text_transaction_details);
-            transactionAmount = itemView.findViewById(R.id.text_transaction_amount);
+            budget_name = itemView.findViewById(R.id.list_name);
+            budget_category_and_date = itemView.findViewById(R.id.list_details);
+            budget_limit = itemView.findViewById(R.id.list_amount);
         }
     }
 }
