@@ -16,10 +16,11 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import java.util.ArrayList;
+
 import java.util.List;
-import com.example.smartspender.adapters.TransactionAdapter;
-import com.example.smartspender.model.Transaction;
+import com.example.smartspender.adapters.BudgetAdapter;
+import com.example.smartspender.model.Budget;
+
 import android.app.DatePickerDialog;
 import android.widget.EditText;
 import java.util.Calendar;
@@ -30,8 +31,8 @@ public class BudgetsFragment extends Fragment {
 
     private FragmentBudgetsBinding binding;
     private RecyclerView recyclerView;
-    private TransactionAdapter adapter;
-    private List<Transaction> transactionList;
+    private BudgetAdapter adapter;
+    private List<Budget> budgetList;
     EditText etDate, nameInput, limitInput;
     private Button createBudgetButton;
 
@@ -51,13 +52,13 @@ public class BudgetsFragment extends Fragment {
 
         // Set LayoutManager
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-//        transactionList = new ArrayList<>();
-//        transactionList.add(new Transaction("Category 1", "Today", 200.0));
-//        transactionList.add(new Transaction("Category 2", "Yestarday", 0.0));
+//        budgetList = new ArrayList<>();
+//        budgetList.add(new Budget("Category 1", "Today", 200.0));
+//        budgetList.add(new Budget("Category 2", "Yestarday", 0.0));
 //        //Can add more if needed
 
         // Initialize Adapter and set it to RecyclerView
-        adapter = new TransactionAdapter();
+        adapter = new BudgetAdapter();
         recyclerView.setAdapter(adapter);
 
         //Initializes the date picker
@@ -88,7 +89,7 @@ public class BudgetsFragment extends Fragment {
             Log.d("CreateBudget", "Budget Limit: " + limit);
             Log.d("CreateBudget", "Date: " + date);
 
-            Transaction newBudget = new Transaction(name, category+" - "+date, limit);
+            Budget newBudget = new Budget(name, category+" - "+date, limit);
             budgetsViewModel.addBudget(newBudget);
             budgetsViewModel.insert(newBudget);
             Log.d("CreateBudget", "Button clicked!"); // Debug log

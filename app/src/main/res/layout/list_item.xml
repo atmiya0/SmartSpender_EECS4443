@@ -19,7 +19,7 @@
         android:gravity="center_vertical">
 
 
-        <!-- Transaction Details -->
+        <!-- Budget Details -->
         <LinearLayout
             android:layout_width="304dp"
             android:layout_height="wrap_content"
@@ -46,7 +46,7 @@
                 android:textSize="14sp" />
         </LinearLayout>
 
-        <!-- Transaction Amount -->
+        <!-- Budget Amount -->
         <TextView
             android:id="@+id/text_transaction_amount"
             android:layout_width="wrap_content"

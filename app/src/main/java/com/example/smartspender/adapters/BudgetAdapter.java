@@ -10,23 +10,23 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smartspender.R;
-import com.example.smartspender.model.Transaction;
+import com.example.smartspender.model.Budget;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.TransactionViewHolder> {
+public class BudgetAdapter extends RecyclerView.Adapter<BudgetAdapter.TransactionViewHolder> {
 
-    private List<Transaction> budgetsList = new ArrayList<>();
+    private List<Budget> budgetsList = new ArrayList<>();
 
-    public TransactionAdapter(List<Transaction> budgetsList) {
+    public BudgetAdapter(List<Budget> budgetsList) {
         this.budgetsList = budgetsList;
     }
-    public TransactionAdapter() {
+    public BudgetAdapter() {
         this.budgetsList = budgetsList;
     }
 
-    public void SetTransaction(List<Transaction> budgetsList) {
+    public void SetTransaction(List<Budget> budgetsList) {
         this.budgetsList = budgetsList;
     }
 
@@ -39,7 +39,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull TransactionViewHolder holder, int position) {
-        Transaction budget = budgetsList.get(position);
+        Budget budget = budgetsList.get(position);
         holder.transactionName.setText(budget.getName());
         holder.transactionDetails.setText(budget.getDetails());
         holder.transactionAmount.setText("$" + String.format("%.2f", budget.getAmount()));

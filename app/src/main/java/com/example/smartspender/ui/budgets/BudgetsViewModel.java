@@ -10,35 +10,35 @@ import androidx.lifecycle.MutableLiveData;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import com.example.smartspender.dao.TransactionDao;
-import com.example.smartspender.database.TransactionDatabase;
-import com.example.smartspender.model.Transaction;
+import com.example.smartspender.dao.BudgetDao;
+import com.example.smartspender.database.BudgetDatabase;
+import com.example.smartspender.model.Budget;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BudgetsViewModel extends AndroidViewModel {
 
-    private final MutableLiveData<List<Transaction>> budgets = new MutableLiveData<>(new ArrayList<>());
-    private LiveData<List<Transaction>> allTransactions;
+    private final MutableLiveData<List<Budget>> budgets = new MutableLiveData<>(new ArrayList<>());
+    private LiveData<List<Budget>> allTransactions;
     private ExecutorService executorService;
-    private TransactionDao transactionDao;
+    private BudgetDao budgetDao;
 
     //Database
     public BudgetsViewModel(Application application) {
         super(application);
-        TransactionDatabase db = TransactionDatabase.getInstance(application);
-        transactionDao = db.transactionDao();
-        allTransactions = transactionDao.getAllTransactions();
+        BudgetDatabase db = BudgetDatabase.getInstance(application);
+        budgetDao = db.transactionDao();
+        allTransactions = budgetDao.getAllTransactions();
         executorService = Executors.newSingleThreadExecutor();
     }
 
-    public LiveData<List<Transaction>> getBudgets() {
+    public LiveData<List<Budget>> getBudgets() {
         return budgets;
     }
 
-    public void addBudget(Transaction budget) {
-        List<Transaction> currentList = budgets.getValue();
+    public void addBudget(Budget budget) {
+        List<Budget> currentList = budgets.getValue();
 
         if (currentList == null) {
             currentList = new ArrayList<>(); // Initialize list if null
@@ -48,16 +48,16 @@ public class BudgetsViewModel extends AndroidViewModel {
         budgets.setValue(currentList);
     }
 
-    public LiveData<List<Transaction>> getAllTransactions() {
+    public LiveData<List<Budget>> getAllTransactions() {
         return allTransactions;
     }
 
-    public void insert(Transaction transaction) {
-        executorService.execute(() -> transactionDao.insert(transaction));
+    public void insert(Budget budget) {
+        executorService.execute(() -> budgetDao.insert(budget));
     }
 
-    public void delete(Transaction transaction) {
-        executorService.execute(() -> transactionDao.delete(transaction));
+    public void delete(Budget budget) {
+        executorService.execute(() -> budgetDao.delete(budget));
     }
 
 

@@ -18,17 +18,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import com.example.smartspender.adapters.TransactionAdapter;
+import com.example.smartspender.adapters.BudgetAdapter;
 import com.example.smartspender.databinding.FragmentExpensesBinding;
-import com.example.smartspender.model.Transaction;
+import com.example.smartspender.model.Budget;
 
 
 public class ExpensesFragment extends Fragment {
 
     private FragmentExpensesBinding binding;
     private RecyclerView recyclerView;
-    private TransactionAdapter transactionAdapter;
-    private List<Transaction> transactionList;
+    private BudgetAdapter budgetAdapter;
+    private List<Budget> budgetList;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -45,20 +45,20 @@ public class ExpensesFragment extends Fragment {
 
         // Set LayoutManager
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        transactionList = new ArrayList<>();
-        transactionList.add(new Transaction("Coffee", "Beverages - March 20", 3));
-        transactionList.add(new Transaction("Tea", "Beverages - March 19", 2));
+        budgetList = new ArrayList<>();
+        budgetList.add(new Budget("Coffee", "Beverages - March 20", 3));
+        budgetList.add(new Budget("Tea", "Beverages - March 19", 2));
 
         // More items for testing scrollability of RecyclerView
-        transactionList.add(new Transaction("Shoes", "Fashion - March 18", 80));
-        transactionList.add(new Transaction("Shirt", "Fashion - March 18", 40));
-        transactionList.add(new Transaction("Pants", "Fashion - March 18", 80));
+        budgetList.add(new Budget("Shoes", "Fashion - March 18", 80));
+        budgetList.add(new Budget("Shirt", "Fashion - March 18", 40));
+        budgetList.add(new Budget("Pants", "Fashion - March 18", 80));
 
         //Can add more if needed
 
         // Initialize Adapter and set it to RecyclerView
-        transactionAdapter = new TransactionAdapter(transactionList);
-        recyclerView.setAdapter(transactionAdapter);
+        budgetAdapter = new BudgetAdapter(budgetList);
+        recyclerView.setAdapter(budgetAdapter);
 
         EditText dateEditText = binding.input3;
         dateEditText.setFocusable(false); // Prevent manual typing

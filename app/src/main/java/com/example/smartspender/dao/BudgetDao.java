@@ -5,19 +5,19 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Delete;
 
-import com.example.smartspender.model.Transaction;
+import com.example.smartspender.model.Budget;
 
 import java.util.List;
 
 @Dao
-public interface TransactionDao {
+public interface BudgetDao {
     @Insert
-    void insert(Transaction transaction);
+    void insert(Budget budget);
 
     @Delete
-    void delete(Transaction transaction);
+    void delete(Budget budget);
 
     @Query("SELECT * FROM budgets ORDER BY id DESC")
-    LiveData<List<Transaction>> getAllTransactions();
+    LiveData<List<Budget>> getAllTransactions();
     
 }

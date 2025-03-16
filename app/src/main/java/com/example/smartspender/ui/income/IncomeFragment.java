@@ -20,9 +20,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smartspender.R;
-import com.example.smartspender.adapters.TransactionAdapter;
+import com.example.smartspender.adapters.BudgetAdapter;
 import com.example.smartspender.databinding.FragmentIncomeBinding;
-import com.example.smartspender.model.Transaction;
+import com.example.smartspender.model.Budget;
 
 import java.util.Calendar;
 import java.util.Locale;
@@ -31,7 +31,7 @@ public class IncomeFragment extends Fragment {
 
     private FragmentIncomeBinding binding;
     private RecyclerView recyclerView;
-    private TransactionAdapter adapter;
+    private BudgetAdapter adapter;
     private EditText etDate;
     private Button createIncomeButton;
 
@@ -50,7 +50,7 @@ public class IncomeFragment extends Fragment {
         // Initialize RecyclerView
         recyclerView = root.findViewById(R.id.income_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        adapter = new TransactionAdapter();
+        adapter = new BudgetAdapter();
         recyclerView.setAdapter(adapter);
 
         // Initialize the Date EditText and set its click listener
@@ -84,8 +84,8 @@ public class IncomeFragment extends Fragment {
             Log.d("CreateIncome", "Amount: " + amount);
             Log.d("CreateIncome", "Date: " + date);
 
-            // Create a new Transaction (update parameters as needed)
-            Transaction newIncome = new Transaction(source, date, amount);
+            // Create a new Budget (update parameters as needed)
+            Budget newIncome = new Budget(source, date, amount);
             incomeViewModel.addIncome(newIncome);
             Log.d("CreateIncome", "Button clicked! Income added.");
         });

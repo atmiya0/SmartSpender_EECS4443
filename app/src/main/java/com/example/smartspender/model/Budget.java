@@ -3,14 +3,14 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "budgets")
-public class Transaction {
+public class Budget {
     @PrimaryKey(autoGenerate = true)
     private int id;
     private String budget_name;
     private String budget_category_and_date;  // Category and date information
     private double budget_limit;
 
-    public Transaction(String budget_name, String budget_category_and_date, double budget_limit) {
+    public Budget(String budget_name, String budget_category_and_date, double budget_limit) {
         this.budget_name = budget_name;
         this.budget_category_and_date = budget_category_and_date;
         this.budget_limit = budget_limit;

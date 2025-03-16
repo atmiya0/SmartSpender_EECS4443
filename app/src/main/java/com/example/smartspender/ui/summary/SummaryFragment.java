@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smartspender.R;
-import com.example.smartspender.adapters.TransactionAdapter;
-import com.example.smartspender.model.Transaction;
+import com.example.smartspender.adapters.BudgetAdapter;
+import com.example.smartspender.model.Budget;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,8 +19,8 @@ import java.util.List;
 public class SummaryFragment extends Fragment {
 
     private RecyclerView recyclerView;
-    private TransactionAdapter transactionAdapter;
-    private List<Transaction> transactionList;
+    private BudgetAdapter budgetAdapter;
+    private List<Budget> budgetList;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -30,13 +30,13 @@ public class SummaryFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         // Dummy Transactions for Summary Screen (Top 5 Expenses)
-        transactionList = new ArrayList<>();
-        transactionList.add(new Transaction("Apple Watch", "20 March", 2000));
-        transactionList.add(new Transaction("Netflix Subscription", "18 March", 15));
-        transactionList.add(new Transaction("Gym Membership", "15 March", 50));
+        budgetList = new ArrayList<>();
+        budgetList.add(new Budget("Apple Watch", "20 March", 2000));
+        budgetList.add(new Budget("Netflix Subscription", "18 March", 15));
+        budgetList.add(new Budget("Gym Membership", "15 March", 50));
 
-        transactionAdapter = new TransactionAdapter(transactionList);
-        recyclerView.setAdapter(transactionAdapter);
+        budgetAdapter = new BudgetAdapter(budgetList);
+        recyclerView.setAdapter(budgetAdapter);
 
         return view;
     }
