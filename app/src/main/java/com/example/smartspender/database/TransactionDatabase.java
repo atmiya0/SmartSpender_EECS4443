@@ -1,9 +1,10 @@
-package com.example.smartspender;
+package com.example.smartspender.database;
 import android.content.Context;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+import com.example.smartspender.dao.TransactionDao;
 import com.example.smartspender.model.Transaction;
 
 @Database(entities = {Transaction.class}, version = 3)

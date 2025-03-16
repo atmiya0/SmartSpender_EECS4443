@@ -6,18 +6,16 @@ import android.util.Log;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import com.example.smartspender.TransactionDao;
-import com.example.smartspender.TransactionDatabase;
+import com.example.smartspender.dao.TransactionDao;
+import com.example.smartspender.database.TransactionDatabase;
 import com.example.smartspender.model.Transaction;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import kotlinx.coroutines.CoroutineScope;
 
 public class BudgetsViewModel extends AndroidViewModel {
 
