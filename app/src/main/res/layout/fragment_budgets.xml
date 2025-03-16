@@ -100,7 +100,7 @@
         android:background="@drawable/button_background"
         android:fontFamily="@font/lexend_deca"
         android:padding="15dp"
-        android:text="@string/budget_create"
+        android:text="Creat budget"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etDate" />
 
@@ -114,7 +114,7 @@
         android:layout_marginTop="15dp"
         android:fontFamily="@font/lexend_deca"
         android:gravity="top"
-        android:text="@string/budget_section"
+        android:text="Budgets"
         android:textAppearance="@style/section_tit"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/budget_button" />
