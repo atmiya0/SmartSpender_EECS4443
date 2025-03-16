@@ -6,7 +6,7 @@ import androidx.room.RoomDatabase;
 
 import com.example.smartspender.model.Transaction;
 
-@Database(entities = {Transaction.class}, version = 1)
+@Database(entities = {Transaction.class}, version = 3)
 public abstract class TransactionDatabase extends RoomDatabase{
     private static TransactionDatabase instance;
 
@@ -15,7 +15,7 @@ public abstract class TransactionDatabase extends RoomDatabase{
     public static synchronized TransactionDatabase getInstance(Context context) {
         if (instance == null) {
             instance = Room.databaseBuilder(context.getApplicationContext(),
-                            TransactionDatabase.class, "budget_database")
+                            TransactionDatabase.class, "budgets_database")
                     .fallbackToDestructiveMigration()
                     .build();
         }

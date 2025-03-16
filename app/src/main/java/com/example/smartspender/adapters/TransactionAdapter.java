@@ -17,17 +17,17 @@ import java.util.List;
 
 public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.TransactionViewHolder> {
 
-    private List<Transaction> transactionList = new ArrayList<>();
+    private List<Transaction> budgetsList = new ArrayList<>();
 
-    public TransactionAdapter(List<Transaction> transactionList) {
-        this.transactionList = transactionList;
+    public TransactionAdapter(List<Transaction> budgetsList) {
+        this.budgetsList = budgetsList;
     }
     public TransactionAdapter() {
-        this.transactionList = transactionList;
+        this.budgetsList = budgetsList;
     }
 
-    public void SetTransaction(List<Transaction> transactionList) {
-        this.transactionList = transactionList;
+    public void SetTransaction(List<Transaction> budgetsList) {
+        this.budgetsList = budgetsList;
     }
 
     @NonNull
@@ -39,17 +39,16 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull TransactionViewHolder holder, int position) {
-        Transaction transaction = transactionList.get(position);
-        holder.transactionName.setText(transaction.getName());
-        holder.transactionDetails.setText(transaction.getDetails());
-        holder.transactionAmount.setText("$"+transaction.getAmount());
-        Log.d("RecyclerView", "Binding Budget: " + transaction.getName());
-
+        Transaction budget = budgetsList.get(position);
+        holder.transactionName.setText(budget.getName());
+        holder.transactionDetails.setText(budget.getDetails());
+        holder.transactionAmount.setText("$" + String.format("%.2f", budget.getAmount()));
+        Log.d("RecyclerView", "Binding Budget: " + budget.getName());
     }
 
     @Override
     public int getItemCount() {
-        return transactionList.size();
+        return budgetsList.size();
     }
 
     static class TransactionViewHolder extends RecyclerView.ViewHolder {
