@@ -90,6 +90,7 @@ public class BudgetsFragment extends Fragment {
 
             Transaction newBudget = new Transaction(name, category+" - "+date, limit);
             budgetsViewModel.addBudget(newBudget);
+            budgetsViewModel.insert(newBudget);
             Log.d("CreateBudget", "Button clicked!"); // Debug log
         });
         budgetsViewModel.getBudgets().observe(getViewLifecycleOwner(), budgets -> {
