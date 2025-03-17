@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -148,6 +149,17 @@ public class ExpensesFragment extends Fragment {
             TextView expenseValueTextView = binding.expenseValue;
             expenseValueTextView.setText(spannableString);
         });
+
+        Button expenseButton = binding.expensesButton;
+        expenseButton.setOnClickListener(v -> {
+            String item = binding.input1.getText().toString();
+            String category = binding.input2.getText().toString();
+            String amount = binding.input3.getText().toString();
+
+            Log.d("ExpenseButton", "Item: " + item + ", Category: " + category + ", Amount: " + amount);
+        });
+
+
         return root;
     }
 
