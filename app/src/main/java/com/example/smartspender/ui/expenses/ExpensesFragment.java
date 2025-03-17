@@ -55,10 +55,19 @@ public class ExpensesFragment extends Fragment {
         input_expense_date.setOnClickListener(v -> showDatePicker());
 
 
-        // Dropdown (AutoCompleteTextView) for selecting budget categories.
+        // Dropdown (AutoCompleteTextView) for selecting expense categories.
         // Shows a dropdown menu when clicked.
         AutoCompleteTextView categoryDropdown = root.findViewById(R.id.input_expense_type);
-        String[] categories = {"Food", "Travel", "Entertainment", "Other"};
+        String[] categories = {
+            "Food",
+            "Housing",
+            "Transportation",
+            "Entertainment",
+            "Shopping",
+            "Healthcare",
+            "Education",
+            "Other"
+        };
         ArrayAdapter<String> Categoryadapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_dropdown_item_1line, categories);
         categoryDropdown.setAdapter(Categoryadapter);
         categoryDropdown.setOnClickListener(v -> categoryDropdown.showDropDown());

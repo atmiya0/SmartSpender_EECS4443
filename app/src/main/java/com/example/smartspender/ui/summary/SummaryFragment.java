@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smartspender.R;
-import com.example.smartspender.adapters.BudgetAdapter;
+import com.example.smartspender.adapters.TopExpensesAdapter;
 import com.example.smartspender.model.Budget;
 import com.example.smartspender.model.Expense;
 import com.example.smartspender.model.Income;
@@ -28,8 +28,7 @@ import java.util.Locale;
 public class SummaryFragment extends Fragment {
 
     private RecyclerView recyclerView;
-    private BudgetAdapter budgetAdapter;
-    private List<Budget> budgetList;
+    private TopExpensesAdapter topExpensesAdapter;
     private TextView totalIncomeAmount;
     private TextView totalExpensesAmount;
     private TextView summaryHeading;
@@ -79,15 +78,14 @@ public class SummaryFragment extends Fragment {
         // Set up RecyclerView for top expenses
         recyclerView = view.findViewById(R.id.recycler_transactions);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        // Dummy Transactions for Summary Screen (Top 5 Expenses)
-        budgetList = new ArrayList<>();
-        budgetList.add(new Budget("Apple Watch", "20 March", 2000));
-        budgetList.add(new Budget("Netflix Subscription", "18 March", 15));
-        budgetList.add(new Budget("Gym Membership", "15 March", 50));
-
-        budgetAdapter = new BudgetAdapter(budgetList);
-        recyclerView.setAdapter(budgetAdapter);
+        
+        // Initialize the top expenses adapter
+        topExpensesAdapter = new TopExpensesAdapter();
+        recyclerView.setAdapter(topExpensesAdapter);
+        
+        // Update the heading to show "TOP 3 EXPENSES" instead of "TOP 5 EXPENSES"
+        TextView transactionHeading = view.findViewById(R.id.transactionHeading);
+        transactionHeading.setText("TOP 3 EXPENSES");
         
         // Observe income data changes
         incomeViewModel.getIncomes().observe(getViewLifecycleOwner(), incomes -> {
@@ -114,6 +112,9 @@ public class SummaryFragment extends Fragment {
             
             // Update the total expenses display
             totalExpensesAmount.setText(String.format("$%.0f", totalExpenses));
+            
+            // Update the top expenses adapter with the current expenses list
+            topExpensesAdapter.setExpenses(expenses);
             
             // Update remaining budget calculation
             updateRemainingBudget();
