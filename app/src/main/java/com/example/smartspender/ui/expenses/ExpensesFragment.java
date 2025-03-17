@@ -66,6 +66,8 @@ public class ExpensesFragment extends Fragment {
         //Initializing other input fields
         input_expense_type = binding.inputExpenseType;
         input_expense_amount = binding.inputExpenseAmount;
+        input_expense_date = binding.inputExpenseDate;
+        input_expense_date.setOnClickListener(v -> showDatePicker());
         Button addExpenseButton = root.findViewById(R.id.add_expense_button);
 
 

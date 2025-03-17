@@ -96,7 +96,11 @@
         android:background="@drawable/text_background"
         android:fontFamily="@font/lexend_deca"
         android:hint="Date"
-        android:inputType="text"
+        android:inputType="none"
+        android:clickable="true"
+        android:enabled="true"
+        android:focusable="false"
+        android:drawableEnd="@drawable/calender_icon"
         android:padding="15dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/input_expense_amount" />

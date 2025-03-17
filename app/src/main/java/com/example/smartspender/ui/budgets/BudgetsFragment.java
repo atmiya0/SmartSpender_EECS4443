@@ -79,15 +79,52 @@ public class BudgetsFragment extends Fragment {
         //Accepting inputs through the button
         // Creates a new Budget object and inserts it into the database via budgetsViewModel.insert(newBudget).
         createBudgetButton.setOnClickListener(v -> {
-            String name = input_budget_name.getText().toString();
-            String category = categoryDropdown.getText().toString();
-            double limit = Double.parseDouble(input_budget_limit.getText().toString());
-            String date = input_budget_date.getText().toString();
+            try {
+                // Input validation
+                String name = input_budget_name.getText().toString();
+                if (name.isEmpty()) {
+                    input_budget_name.setError("Please enter a budget name");
+                    return;
+                }
+                
+                String category = categoryDropdown.getText().toString();
+                if (category.isEmpty()) {
+                    categoryDropdown.setError("Please select a category");
+                    return;
+                }
+                
+                String limitStr = input_budget_limit.getText().toString();
+                if (limitStr.isEmpty()) {
+                    input_budget_limit.setError("Please enter a budget limit");
+                    return;
+                }
+                
+                double limit = Double.parseDouble(limitStr);
+                
+                String date = input_budget_date.getText().toString();
+                if (date.isEmpty()) {
+                    input_budget_date.setError("Please select a date");
+                    return;
+                }
 
-            Budget newBudget = new Budget(name, category+" - "+date, limit);
-            budgetsViewModel.addBudget(newBudget);
-            budgetsViewModel.insert(newBudget);
-            Log.d("CreateBudget", "Button clicked!"); // Debug log
+                // Create and save the budget
+                Budget newBudget = new Budget(name, category+" - "+date, limit);
+                budgetsViewModel.addBudget(newBudget);
+                budgetsViewModel.insert(newBudget);
+                
+                // Clear input fields after successful addition
+                input_budget_name.setText("");
+                categoryDropdown.setText("");
+                input_budget_limit.setText("");
+                input_budget_date.setText("");
+                
+                Log.d("CreateBudget", "Budget added successfully: " + name + ", $" + limit);
+            } catch (NumberFormatException e) {
+                input_budget_limit.setError("Please enter a valid number");
+                Log.e("CreateBudget", "Error parsing limit: " + e.getMessage());
+            } catch (Exception e) {
+                Log.e("CreateBudget", "Error adding budget: " + e.getMessage());
+            }
         });
 
         // Observes changes in the budget list using LiveData.
