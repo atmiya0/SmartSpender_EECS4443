@@ -18,5 +18,7 @@ public interface IncomeDao {
 
     @Query("SELECT * FROM incomes ORDER BY id DESC")
     LiveData<List<Income>> getAllIncomes();
-
+    
+    @Query("DELETE FROM incomes")
+    void deleteAllIncomes();
 }

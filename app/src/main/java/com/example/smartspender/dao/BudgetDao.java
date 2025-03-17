@@ -19,4 +19,6 @@ public interface BudgetDao {
     @Query("SELECT * FROM budgets ORDER BY id DESC")
     LiveData<List<Budget>> getAllBudgets();
     
+    @Query("DELETE FROM budgets")
+    void deleteAllBudgets();
 }

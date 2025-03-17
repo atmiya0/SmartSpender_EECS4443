@@ -72,5 +72,9 @@ public class IncomeViewModel extends AndroidViewModel {
     public void delete(Income income) {
         executorService.execute(() -> incomeDao.delete(income));
     }
-
+    
+    // Sets the incomes LiveData with a new list of incomes
+    public void setIncomes(List<Income> incomeList) {
+        incomes.setValue(incomeList);
+    }
 }

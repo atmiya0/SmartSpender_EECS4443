@@ -72,5 +72,9 @@ public class ExpensesViewModel extends AndroidViewModel {
     public void delete(Expense expense) {
         executorService.execute(() -> expenseDao.delete(expense));
     }
-
+    
+    // Sets the expenses LiveData with a new list of expenses
+    public void setExpenses(List<Expense> expenseList) {
+        expenses.setValue(expenseList);
+    }
 }
