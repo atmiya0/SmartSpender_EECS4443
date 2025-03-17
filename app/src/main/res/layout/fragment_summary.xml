@@ -29,7 +29,7 @@
                 android:padding="15dp">
 
                 <ImageView
-                    android:id="@+id/icon_piggy_bank"
+                    android:id="@+id/summary_icon"
                     android:layout_width="52dp"
                     android:layout_height="52dp"
                     android:src="@drawable/piggy_icon"
@@ -38,7 +38,7 @@
                     tools:ignore="ImageContrastCheck" />
 
                 <TextView
-                    android:id="@+id/heading"
+                    android:id="@+id/summary_heading"
                     android:layout_width="309dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -47,7 +47,7 @@
                     android:textColor="@color/black"
                     android:textSize="30dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/icon_piggy_bank" />
+                    app:layout_constraintTop_toBottomOf="@+id/summary_icon" />
 
                 <LinearLayout
                     android:id="@+id/remainingBudget"
@@ -57,7 +57,7 @@
                     android:orientation="vertical"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/heading">
+                    app:layout_constraintTop_toBottomOf="@+id/summary_heading">
 
                     <!-- Budget Amount Text -->
                     <LinearLayout
@@ -100,43 +100,84 @@
                         android:lineSpacingExtra="8sp"
                         android:text="REMAINING BUDGET"
                         android:textColor="@android:color/black"
-                        android:textSize="15dp"
+                        android:textSize="15sp"
                         android:textStyle="bold"
                         android:typeface="normal" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/info_1"
+                    android:id="@+id/summary_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
                     android:background="@drawable/text_background"
-                    android:orientation="vertical"
-                    android:padding="10dp"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/remainingBudget"
                     app:layout_constraintVertical_bias="0.0">
 
-                    <TextView
-                        android:id="@+id/amount1"
-                        android:layout_width="match_parent"
+                    <!-- Total Income Section -->
+                    <LinearLayout
+                        android:id="@+id/income_section"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/lexend_deca_bold"
-                        android:text="$300"
-                        android:textColor="@color/black"
-                        android:textSize="24sp" />
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="start"
+                        android:paddingStart="16dp">
 
-                    <TextView
-                        android:id="@+id/description1"
-                        android:layout_width="match_parent"
+                        <TextView
+                            android:id="@+id/total_income_amount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/lexend_deca_bold"
+                            android:text="$300"
+                            android:textColor="@color/black"
+                            android:textSize="32sp" />
+
+                        <TextView
+                            android:id="@+id/total_income_description"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/lexend_deca"
+                            android:text="TOTAL INCOME"
+                            android:textColor="@color/black"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+
+                    <!-- Total Expenses Section -->
+                    <LinearLayout
+                        android:id="@+id/expenses_section"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/lexend_deca"
-                        android:text="Total Income"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="start"
+                        android:paddingStart="16dp">
+
+                        <TextView
+                            android:id="@+id/total_expenses_amount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/lexend_deca_bold"
+                            android:text="$400"
+                            android:textColor="@color/black"
+                            android:textSize="32sp" />
+
+                        <TextView
+                            android:id="@+id/total_expenses_description"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/lexend_deca"
+                            android:text="TOTAL EXPENSES"
+                            android:textColor="@color/black"
+                            android:textSize="15sp" />
+                    </LinearLayout>
                 </LinearLayout>
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

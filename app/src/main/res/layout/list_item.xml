@@ -15,19 +15,19 @@
         android:padding="16dp"
         android:orientation="horizontal"
         android:background="@color/gray200"
-
         android:gravity="center_vertical">
 
 
-        <!-- Transaction Details -->
+        <!-- Budget Details -->
         <LinearLayout
             android:layout_width="304dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical">
 
+            <!-- Name -->
             <TextView
-                android:id="@+id/text_transaction_name"
+                android:id="@+id/list_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/lexend_deca_bold"
@@ -36,8 +36,9 @@
                 android:textSize="17dp"
                 android:textStyle="bold" />
 
+            <!-- Details -->
             <TextView
-                android:id="@+id/text_transaction_details"
+                android:id="@+id/list_details"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/lexend_deca"
@@ -46,9 +47,9 @@
                 android:textSize="14sp" />
         </LinearLayout>
 
-        <!-- Transaction Amount -->
+        <!-- Amount -->
         <TextView
-            android:id="@+id/text_transaction_amount"
+            android:id="@+id/list_amount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/lexend_deca_bold"

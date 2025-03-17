@@ -11,5 +11,8 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        
+        <!-- Apply black button style to all buttons -->
+        <item name="materialButtonStyle">@style/BlackButtonStyle</item>
     </style>
 </resources>
