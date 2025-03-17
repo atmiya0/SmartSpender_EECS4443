@@ -119,6 +119,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/create_budget_button" />
 
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/budgets_recyclerView"
         android:layout_width="match_parent"
