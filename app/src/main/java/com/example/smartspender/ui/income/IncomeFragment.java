@@ -1,4 +1,4 @@
-package com.example.smartspender.ui.expenses;
+package com.example.smartspender.ui.income;
 
 import com.example.smartspender.R;
 
@@ -42,7 +42,7 @@ public class IncomeFragment extends Fragment {
 
         // expensesViewModel.getAllExpenses().observe(getViewLifecycleOwner(), textView::setText);
         // Initialize RecyclerView
-        RecyclerView recyclerView = root.findViewById(R.id.expenses_recyclerView);
+        RecyclerView recyclerView = root.findViewById(R.id.income_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new IncomeAdapter();
         recyclerView.setAdapter(adapter);
