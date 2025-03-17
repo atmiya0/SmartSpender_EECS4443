@@ -1,13 +1,26 @@
 <resources>
     <string name="app_name">SmartSpender</string>
+
     <string name="title_summary">SUMMARY</string>
     <string name="title_income">INCOME</string>
     <string name="title_expenses">EXPENSES</string>
     <string name="title_budgets">BUDGETS</string>
-    <string name="summary_tit">You have two active budgets</string>
-    <string name="budget_create">Create Budget</string>
-    <string name="budget_section">Budgets</string>
-    
-    <string name="expense_add">Add Expense</string>
-    <string name="expense_section">Expenses</string>
+
+    <string name="summary_title">Your monthly summary is</string>
+
+    <string name="income_title">Your monthly income is</string>
+    <string name="income_button_text">Add income</string>
+    <string name="income_subHeading">All Income</string>
+    <string name="income_source">Income source</string>
+
+    <string name="expense_title">Your monthly expense is</string>
+    <string name="expense_button_text">Add expense</string>
+    <string name="expense_subHeading">All Expense</string>
+    <string name="expense_source">Expense source</string>
+
+    <string name="budget_title">You have %1$s active budgets</string>
+    <string name="budget_button_text">Create Budget</string>
+    <string name="budget_subHeading">All Budget</string>
+    <string name="budget_source">Budget source</string>
+
 </resources>
