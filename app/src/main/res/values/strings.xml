@@ -18,7 +18,7 @@
     <string name="expense_subHeading">All Expense</string>
     <string name="expense_source">Expense source</string>
 
-    <string name="budget_title">Your monthly budget is</string>
+    <string name="budget_title">You have %1$s active budgets</string>
     <string name="budget_button_text">Create Budget</string>
     <string name="budget_subHeading">All Budget</string>
     <string name="budget_source">Budget source</string>

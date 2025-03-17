@@ -13,6 +13,9 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.text.SpannableString;
+import android.text.Spannable;
+import android.text.style.ForegroundColorSpan;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -111,11 +114,29 @@ public class IncomeFragment extends Fragment {
             }
         });
 
-        // Observes changes in the budget list using LiveData.
-        // Updates the RecyclerView adapter whenever a new budget is added.
+        // Observes changes in the income list using LiveData.
+        // Updates the RecyclerView adapter whenever a new income is added.
         incomeViewModel.getIncomes().observe(getViewLifecycleOwner(), incomes -> {
             adapter.SetIncome(incomes);
             adapter.notifyDataSetChanged();
+            
+            // Calculate total income
+            double totalIncome = 0.0;
+            for (Income income : incomes) {
+                totalIncome += income.getIncome_amount();
+            }
+            
+            // Format the total income with currency symbol and styling
+            String formattedTotal = String.format("$%.0f", totalIncome);
+            
+            // Create a SpannableString to style the amount in green
+            SpannableString spannableString = new SpannableString(formattedTotal);
+            spannableString.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.income_green)), 
+                0, formattedTotal.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            
+            // Update the incomeValue TextView with the formatted total
+            TextView incomeValueTextView = binding.incomeValue;
+            incomeValueTextView.setText(spannableString);
         });
         return root;
     }

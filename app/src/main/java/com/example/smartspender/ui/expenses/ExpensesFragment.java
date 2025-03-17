@@ -13,6 +13,9 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.text.SpannableString;
+import android.text.Spannable;
+import android.text.style.ForegroundColorSpan;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -110,11 +113,29 @@ public class ExpensesFragment extends Fragment {
             }
         });
 
-        // Observes changes in the budget list using LiveData.
-        // Updates the RecyclerView adapter whenever a new budget is added.
+        // Observes changes in the expenses list using LiveData.
+        // Updates the RecyclerView adapter whenever a new expense is added.
         expensesViewModel.getExpenses().observe(getViewLifecycleOwner(), expenses -> {
             adapter.SetExpense(expenses);
             adapter.notifyDataSetChanged();
+            
+            // Calculate total expenses
+            double totalExpenses = 0.0;
+            for (Expense expense : expenses) {
+                totalExpenses += expense.getExpense_amount();
+            }
+            
+            // Format the total expenses with currency symbol and styling
+            String formattedTotal = String.format("$%.0f", totalExpenses);
+            
+            // Create a SpannableString to style the amount in red
+            SpannableString spannableString = new SpannableString(formattedTotal);
+            spannableString.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.expense_red)), 
+                0, formattedTotal.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            
+            // Update the expenseValue TextView with the formatted total
+            TextView expenseValueTextView = binding.expenseValue;
+            expenseValueTextView.setText(spannableString);
         });
         return root;
     }

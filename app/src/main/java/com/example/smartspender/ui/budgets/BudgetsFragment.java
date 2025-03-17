@@ -24,6 +24,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.Calendar;
+import android.text.SpannableString;
+import android.text.Spannable;
+import android.text.style.ForegroundColorSpan;
 
 import com.example.smartspender.databinding.FragmentBudgetsBinding;
 
@@ -92,6 +95,26 @@ public class BudgetsFragment extends Fragment {
         budgetsViewModel.getBudgets().observe(getViewLifecycleOwner(), budgets -> {
             adapter.SetBudget(budgets);
             adapter.notifyDataSetChanged();
+            
+            // Update the budget heading text with the dynamic count
+            int budgetCount = budgets.size();
+            String countText = String.valueOf(budgetCount);
+            
+            // Create a SpannableString to style the count number in blue
+            String formattedText = getString(R.string.budget_title, countText);
+            SpannableString spannableString = new SpannableString(formattedText);
+            
+            // Find the position of the count number in the text
+            int startPos = formattedText.indexOf(countText);
+            int endPos = startPos + countText.length();
+            
+            // Apply blue color to the count number
+            if (startPos >= 0) {
+                spannableString.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.blue_accent)), 
+                    startPos, endPos, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            }
+            
+            textView.setText(spannableString);
         });
         return root;
     }
