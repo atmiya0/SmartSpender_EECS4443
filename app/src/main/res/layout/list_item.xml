@@ -15,7 +15,6 @@
         android:padding="16dp"
         android:orientation="horizontal"
         android:background="@color/gray200"
-
         android:gravity="center_vertical">
 
 

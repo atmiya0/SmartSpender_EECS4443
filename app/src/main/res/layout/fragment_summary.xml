@@ -29,7 +29,7 @@
                 android:padding="15dp">
 
                 <ImageView
-                    android:id="@+id/icon_piggy_bank"
+                    android:id="@+id/summary_icon"
                     android:layout_width="52dp"
                     android:layout_height="52dp"
                     android:src="@drawable/piggy_icon"
@@ -38,7 +38,7 @@
                     tools:ignore="ImageContrastCheck" />
 
                 <TextView
-                    android:id="@+id/heading"
+                    android:id="@+id/summary_heading"
                     android:layout_width="309dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -47,7 +47,7 @@
                     android:textColor="@color/black"
                     android:textSize="30dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/icon_piggy_bank" />
+                    app:layout_constraintTop_toBottomOf="@+id/summary_icon" />
 
                 <LinearLayout
                     android:id="@+id/remainingBudget"
@@ -57,7 +57,7 @@
                     android:orientation="vertical"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/heading">
+                    app:layout_constraintTop_toBottomOf="@+id/summary_heading">
 
                     <!-- Budget Amount Text -->
                     <LinearLayout
@@ -100,7 +100,7 @@
                         android:lineSpacingExtra="8sp"
                         android:text="REMAINING BUDGET"
                         android:textColor="@android:color/black"
-                        android:textSize="15dp"
+                        android:textSize="15sp"
                         android:textStyle="bold"
                         android:typeface="normal" />
                 </LinearLayout>
@@ -120,7 +120,7 @@
                     app:layout_constraintVertical_bias="0.0">
 
                     <TextView
-                        android:id="@+id/amount1"
+                        android:id="@+id/total_income_amount"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/lexend_deca_bold"
@@ -129,7 +129,7 @@
                         android:textSize="24sp" />
 
                     <TextView
-                        android:id="@+id/description1"
+                        android:id="@+id/total_income_description"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/lexend_deca"
@@ -137,6 +137,7 @@
                         android:textColor="@color/black"
                         android:textSize="16sp" />
                 </LinearLayout>
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

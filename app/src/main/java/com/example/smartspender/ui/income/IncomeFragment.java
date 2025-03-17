@@ -1,4 +1,6 @@
-package com.example.smartspender.ui.income;
+package com.example.smartspender.ui.expenses;
+
+import com.example.smartspender.R;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
@@ -9,111 +11,102 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.smartspender.R;
-import com.example.smartspender.adapters.BudgetAdapter;
-import com.example.smartspender.databinding.FragmentIncomeBinding;
-import com.example.smartspender.model.Budget;
-
+import androidx.recyclerview.widget.LinearLayoutManager;
 import java.util.Calendar;
-import java.util.Locale;
+
+import com.example.smartspender.adapters.IncomeAdapter;
+import com.example.smartspender.databinding.FragmentIncomeBinding;
+import com.example.smartspender.model.Income;
+import com.example.smartspender.ui.income.IncomeViewModel;
 
 public class IncomeFragment extends Fragment {
 
     private FragmentIncomeBinding binding;
-    private RecyclerView recyclerView;
-    private BudgetAdapter adapter;
-    private EditText etDate;
-    private Button createIncomeButton;
+    private IncomeAdapter adapter;
+    EditText input_income_type, input_income_amount, input_income_date;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        IncomeViewModel incomeViewModel =
-                new ViewModelProvider(this).get(IncomeViewModel.class);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        IncomeViewModel incomeViewModel = new ViewModelProvider(this).get(IncomeViewModel.class);
 
         binding = FragmentIncomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        // Set summary title text if needed
-        final TextView textView = binding.summaryTit;
-        // incomeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        final TextView textView = binding.incomeHeading;
 
+        // expensesViewModel.getAllExpenses().observe(getViewLifecycleOwner(), textView::setText);
         // Initialize RecyclerView
-        recyclerView = root.findViewById(R.id.income_recyclerView);
+        RecyclerView recyclerView = root.findViewById(R.id.expenses_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        adapter = new BudgetAdapter();
+        adapter = new IncomeAdapter();
         recyclerView.setAdapter(adapter);
 
-        // Initialize the Date EditText and set its click listener
-        etDate = binding.etDate;
-        etDate.setOnClickListener(v -> showDatePicker());
 
-        // Initialize the AutoCompleteTextView for Income Source
-        AutoCompleteTextView incomeSourceDropdown = root.findViewById(R.id.incomeSource);
-        String[] sources = {"Work", "Investment", "Tax Return"};
-        ArrayAdapter<String> sourceAdapter = new ArrayAdapter<>(requireContext(),
-                android.R.layout.simple_dropdown_item_1line, sources);
-        incomeSourceDropdown.setAdapter(sourceAdapter);
-        incomeSourceDropdown.setOnClickListener(v -> incomeSourceDropdown.showDropDown());
+        //This initializes the date input field and calls showDatePicker() when clicked.
+        input_income_date = binding.inputIncomeDate;
+        input_income_date.setOnClickListener(v -> showDatePicker());
 
-        // Initialize the Amount input field
-        EditText amountInput = binding.incomeAmount;
 
-        // Initialize the Add Income button
-        createIncomeButton = root.findViewById(R.id.add_income_button);
-        createIncomeButton.setOnClickListener(v -> {
-            String source = incomeSourceDropdown.getText().toString();
-            String amountStr = amountInput.getText().toString();
-            if (amountStr.isEmpty()) {
-                Log.d("CreateIncome", "Amount input is empty!");
-                return;
-            }
-            double amount = Double.parseDouble(amountStr);
-            String date = etDate.getText().toString();
+        // Dropdown (AutoCompleteTextView) for selecting budget categories.
+        // Shows a dropdown menu when clicked.
+        AutoCompleteTextView categoryDropdown = root.findViewById(R.id.input_income_type);
+        String[] categories = {"Work", "Freelance", "Cash Job", "Side Hustle"};
+        ArrayAdapter<String> Categoryadapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_dropdown_item_1line, categories);
+        categoryDropdown.setAdapter(Categoryadapter);
+        categoryDropdown.setOnClickListener(v -> categoryDropdown.showDropDown());
 
-            Log.d("CreateIncome", "Income Source: " + source);
-            Log.d("CreateIncome", "Amount: " + amount);
-            Log.d("CreateIncome", "Date: " + date);
+        //Initializing other input fields
+        input_income_type = binding.inputIncomeType;
+        input_income_amount = binding.inputIncomeAmount;
+        Button addIncomeButton = root.findViewById(R.id.add_income_button);
 
-            // Create a new Budget (update parameters as needed)
-            Budget newIncome = new Budget(source, date, amount);
-            incomeViewModel.addIncome(newIncome);
-            Log.d("CreateIncome", "Button clicked! Income added.");
+
+        //Accepting inputs through the button
+        // Creates a new Budget object and inserts it into the database via budgetsViewModel.insert(newBudget).
+        addIncomeButton.setOnClickListener(v -> {
+            String category = categoryDropdown.getText().toString();
+            Double amount = Double.parseDouble(input_income_amount.getText().toString());
+            String date = input_income_date.getText().toString();
+
+            Income newExpense = new Income(category, amount, date);
+            incomeViewModel.addIncome(newExpense);
+            incomeViewModel.insert(newExpense);
+            Log.d("AddExpense", "Button clicked!"); // Debug log
         });
 
+        // Observes changes in the budget list using LiveData.
+        // Updates the RecyclerView adapter whenever a new budget is added.
         incomeViewModel.getIncomes().observe(getViewLifecycleOwner(), incomes -> {
-            adapter.SetBudget(incomes);
+            adapter.SetIncome(incomes);
             adapter.notifyDataSetChanged();
         });
-
         return root;
     }
 
-    private void showDatePicker() {
+
+    // Displays a DatePickerDialog, allowing the user to select a date for the budget.
+    // Formats the selected date as DD/MM/YYYY and sets it in etDate.
+    private void showDatePicker(){
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        DatePickerDialog datePicker = new DatePickerDialog(requireContext(),
-                (DatePicker view, int selectedYear, int selectedMonth, int selectedDay) -> {
-                    String formattedDate = String.format(Locale.getDefault(),
-                            "%02d/%02d/%04d", selectedDay, (selectedMonth + 1), selectedYear);
-                    etDate.setText(formattedDate);
-                }, year, month, day);
+        DatePickerDialog datePicker = new DatePickerDialog(requireContext(), (view1, selectedYear, selectedMonth, selectedDay) -> {
+            input_income_date.setText(selectedDay + "/" + (selectedMonth + 1) + "/" + selectedYear);
+        }, year, month, day);
 
         datePicker.show();
     }
 
+
+    // Prevents memory leaks by setting binding to null when the fragment is destroyed.
     @Override
     public void onDestroyView() {
         super.onDestroyView();
