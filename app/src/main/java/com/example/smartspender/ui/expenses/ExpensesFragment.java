@@ -67,16 +67,47 @@ public class ExpensesFragment extends Fragment {
 
 
         //Accepting inputs through the button
-        // Creates a new Budget object and inserts it into the database via budgetsViewModel.insert(newBudget).
+        // Creates a new Expense object and inserts it into the database via expensesViewModel.insert(newExpense).
         addExpenseButton.setOnClickListener(v -> {
-            String category = categoryDropdown.getText().toString();
-            Double amount = Double.parseDouble(input_expense_amount.getText().toString());
-            String date = input_expense_date.getText().toString();
+            try {
+                // Input validation
+                String category = categoryDropdown.getText().toString();
+                if (category.isEmpty()) {
+                    categoryDropdown.setError("Please select a category");
+                    return;
+                }
+                
+                String amountStr = input_expense_amount.getText().toString();
+                if (amountStr.isEmpty()) {
+                    input_expense_amount.setError("Please enter an amount");
+                    return;
+                }
+                
+                Double amount = Double.parseDouble(amountStr);
+                
+                String date = input_expense_date.getText().toString();
+                if (date.isEmpty()) {
+                    input_expense_date.setError("Please select a date");
+                    return;
+                }
 
-            Expense newExpense = new Expense(category, amount, date);
-            expensesViewModel.addExpense(newExpense);
-            expensesViewModel.insert(newExpense);
-            Log.d("AddExpense", "Button clicked!"); // Debug log
+                // Create and save the expense
+                Expense newExpense = new Expense(category, amount, date);
+                expensesViewModel.addExpense(newExpense);
+                expensesViewModel.insert(newExpense);
+                
+                // Clear input fields after successful addition
+                categoryDropdown.setText("");
+                input_expense_amount.setText("");
+                input_expense_date.setText("");
+                
+                Log.d("AddExpense", "Expense added successfully: " + category + ", $" + amount);
+            } catch (NumberFormatException e) {
+                input_expense_amount.setError("Please enter a valid number");
+                Log.e("AddExpense", "Error parsing amount: " + e.getMessage());
+            } catch (Exception e) {
+                Log.e("AddExpense", "Error adding expense: " + e.getMessage());
+            }
         });
 
         // Observes changes in the budget list using LiveData.

@@ -23,7 +23,7 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseV
         this.expensesList = expensesList;
     }
     public ExpenseAdapter() {
-        this.expensesList = expensesList;
+        this.expensesList = new ArrayList<>();
     }
 
     public void SetExpense(List<Expense> expensesList) {
@@ -41,7 +41,7 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseV
     public void onBindViewHolder(@NonNull ExpenseViewHolder holder, int position) {
         Expense expense = expensesList.get(position);
         holder.expense_type.setText(expense.getExpense_type());
-        holder.expense_amount.setText((int) expense.getExpense_amount());
+        holder.expense_amount.setText("$" + String.format("%.2f", expense.getExpense_amount()));
         holder.expense_date.setText(expense.getExpense_date());
         Log.d("RecyclerView", "Binding Expense: " + expense.getExpense_type());
     }
@@ -58,8 +58,8 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseV
         public ExpenseViewHolder(@NonNull View itemView) {
             super(itemView);
             expense_type = itemView.findViewById(R.id.list_name);
-            expense_amount = itemView.findViewById(R.id.list_details);
-            expense_date = itemView.findViewById(R.id.list_amount);
+            expense_date = itemView.findViewById(R.id.list_details);
+            expense_amount = itemView.findViewById(R.id.list_amount);
         }
     }
 }
