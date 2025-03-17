@@ -68,16 +68,47 @@ public class IncomeFragment extends Fragment {
 
 
         //Accepting inputs through the button
-        // Creates a new Budget object and inserts it into the database via budgetsViewModel.insert(newBudget).
+        // Creates a new Income object and inserts it into the database via incomeViewModel.insert(newIncome).
         addIncomeButton.setOnClickListener(v -> {
-            String category = categoryDropdown.getText().toString();
-            Double amount = Double.parseDouble(input_income_amount.getText().toString());
-            String date = input_income_date.getText().toString();
+            try {
+                // Input validation
+                String category = categoryDropdown.getText().toString();
+                if (category.isEmpty()) {
+                    categoryDropdown.setError("Please select a category");
+                    return;
+                }
+                
+                String amountStr = input_income_amount.getText().toString();
+                if (amountStr.isEmpty()) {
+                    input_income_amount.setError("Please enter an amount");
+                    return;
+                }
+                
+                Double amount = Double.parseDouble(amountStr);
+                
+                String date = input_income_date.getText().toString();
+                if (date.isEmpty()) {
+                    input_income_date.setError("Please select a date");
+                    return;
+                }
 
-            Income newExpense = new Income(category, amount, date);
-            incomeViewModel.addIncome(newExpense);
-            incomeViewModel.insert(newExpense);
-            Log.d("AddExpense", "Button clicked!"); // Debug log
+                // Create and save the income
+                Income newIncome = new Income(category, amount, date);
+                incomeViewModel.addIncome(newIncome);
+                incomeViewModel.insert(newIncome);
+                
+                // Clear input fields after successful addition
+                categoryDropdown.setText("");
+                input_income_amount.setText("");
+                input_income_date.setText("");
+                
+                Log.d("AddIncome", "Income added successfully: " + category + ", $" + amount);
+            } catch (NumberFormatException e) {
+                input_income_amount.setError("Please enter a valid number");
+                Log.e("AddIncome", "Error parsing amount: " + e.getMessage());
+            } catch (Exception e) {
+                Log.e("AddIncome", "Error adding income: " + e.getMessage());
+            }
         });
 
         // Observes changes in the budget list using LiveData.

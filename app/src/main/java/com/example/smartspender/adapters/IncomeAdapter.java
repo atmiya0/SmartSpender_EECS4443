@@ -23,7 +23,7 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.IncomeView
         this.incomesList = incomesList;
     }
     public IncomeAdapter() {
-        this.incomesList = incomesList;
+        this.incomesList = new ArrayList<>();
     }
 
     public void SetIncome(List<Income> incomesList) {
@@ -41,7 +41,7 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.IncomeView
     public void onBindViewHolder(@NonNull IncomeViewHolder holder, int position) {
         Income income = incomesList.get(position);
         holder.income_type.setText(income.getIncome_type());
-        holder.income_amount.setText((int) income.getIncome_amount());
+        holder.income_amount.setText(String.valueOf(income.getIncome_amount()));
         holder.income_date.setText(income.getIncome_date());
         Log.d("RecyclerView", "Binding Income: " + income.getIncome_type());
     }
