@@ -73,4 +73,8 @@ public class BudgetsViewModel extends AndroidViewModel {
         executorService.execute(() -> budgetDao.delete(budget));
     }
     
+    // Sets the budgets LiveData with a new list of budgets
+    public void setBudgets(List<Budget> budgetList) {
+        budgets.setValue(budgetList);
+    }
 }
