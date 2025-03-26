@@ -56,7 +56,7 @@ public class BudgetFragmentTest {
         // Type budget name
         onView(withId(R.id.input_budget_name)).perform(typeText("Justin"), closeSoftKeyboard());
 
-        // Type budget name
+        // Type budget limit
         onView(withId(R.id.input_budget_limit)).perform(typeText("1000"), closeSoftKeyboard());
 
         // Choose date
