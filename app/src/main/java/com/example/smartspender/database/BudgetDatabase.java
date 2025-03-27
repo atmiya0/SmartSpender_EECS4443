@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase;
 import com.example.smartspender.dao.BudgetDao;
 import com.example.smartspender.model.Budget;
 
-@Database(entities = {Budget.class}, version = 3)
+@Database(entities = {Budget.class}, version = 3, exportSchema = false)
 public abstract class BudgetDatabase extends RoomDatabase{
     private static BudgetDatabase instance;
 

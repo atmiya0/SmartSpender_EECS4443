@@ -13,6 +13,7 @@ navigationUi = "2.8.8"
 recyclerview = "1.2.0"
 roomCompiler = "2.6.1"
 roomRuntime = "2.6.1"
+runner = "1.6.2"
 
 [libraries]
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
@@ -28,6 +29,7 @@ navigation-fragment = { group = "androidx.navigation", name = "navigation-fragme
 navigation-ui = { group = "androidx.navigation", name = "navigation-ui", version.ref = "navigationUi" }
 recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomCompiler" }
+androidx-runner = { group = "androidx.test", name = "runner", version.ref = "runner" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
